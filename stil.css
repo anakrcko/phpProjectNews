@@ -1,0 +1,115 @@
+body {
+    display: block;
+    padding: 10px 50px;
+    font-family: "Arvo",serif;
+    font-size: 18px;
+    margin:auto;
+    background-color: lightgoldenrodyellow;
+}
+.kategorije {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.kategorijeLista {
+  float: left;
+}
+
+.kategorijeLista a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.kategorijeLista a:hover {
+  background-color: #111;
+}
+.vest {
+  border: 1px solid black;
+  background-color: lightblue;
+  padding-top: 10px;
+  padding-right: 50px;
+  padding-bottom: 10px;
+  padding-left: 50px;
+}
+.novinar {
+  border: 1px solid black;
+  background-color: lightblue;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+
+/*---*/
+
+.login{
+     padding: 20px;
+     margin:auto;
+     background-color: lightblue;
+     width: 300px;
+     text-align: center; 
+}
+
+
+/* Create two unequal columns that floats next to each other */
+.column {
+  float: left;
+  padding: 5px;
+}
+
+.left {
+  width: 18%;
+}
+
+.right {
+  width: 80%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/**/
+
+.novinari {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  padding: 5px 5px;
+}
+
+.novinarLista {
+  float: left;
+}
+
+.novinarLista a {
+  display: block;
+  color: blue;
+  text-align: left;
+  padding-bottom: 5px;
+  text-decoration: none;
+}
+
+.novinarLista a:hover {
+  background-color: #111;
+  color:white;
+}
+.login a{
+  color: blue;
+  padding: 5px;
+  text-decoration: none;
+}
+.login a:hover {
+  background-color: #111;
+  color:white;
+}

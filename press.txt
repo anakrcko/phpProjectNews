@@ -1,0 +1,235 @@
+-- phpMyAdmin SQL Dump
+-- version 5.0.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 19, 2022 at 11:06 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 7.3.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `press`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kategorija`
+--
+create database press;
+use press;
+
+
+CREATE TABLE `kategorija` (
+  `id` int(11) NOT NULL,
+  `naziv` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `kategorija`
+--
+
+INSERT INTO `kategorija` (`id`, `naziv`) VALUES
+(1, 'IT'),
+(2, 'SPORT'),
+(3, 'NAUKA'),
+(4, 'SVET'),
+(5, 'Korona'),
+(6, 'Poljoprivreda');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `novinar`
+--
+
+CREATE TABLE `novinar` (
+  `id` int(11) NOT NULL,
+  `ime` varchar(20) NOT NULL,
+  `prezime` varchar(20) NOT NULL,
+  `adresa` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `novinar`
+--
+
+INSERT INTO `novinar` (`id`, `ime`, `prezime`, `adresa`) VALUES
+(1, 'Snezana', 'Radovanovic', ''),
+(2, 'Milos', 'Milosevic', ''),
+(3, 'Marko', 'Markovic', ''),
+(4, 'Nikola', 'Nikolic', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role`
+--
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL,
+  `rola` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `role`
+--
+
+INSERT INTO `role` (`id`, `rola`) VALUES
+(1, 'admin'),
+(2, 'user');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
+  `ime` varchar(20) NOT NULL,
+  `prezime` varchar(20) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  `email` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `ime`, `prezime`, `role_id`, `email`, `password`) VALUES
+(1, 'Ana', 'Radovanovic', 1, 'ana@hotmail.com', 'ana123'),
+(2, 'Marko', 'Markovic', 2, 'marko@hotmail.com', 'marko123'),
+(4, 'Jovana', 'Jovanic', 2, 'jovana@hotmail.com', 'jovana123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vesti`
+--
+
+CREATE TABLE `vesti` (
+  `id` int(11) NOT NULL,
+  `naslov` text NOT NULL,
+  `opis` text NOT NULL,
+  `godina` int(11) NOT NULL,
+  `kategorija_id` int(11) NOT NULL,
+  `novinar_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vesti`
+--
+
+INSERT INTO `vesti` (`id`, `naslov`, `opis`, `godina`, `kategorija_id`, `novinar_id`) VALUES
+(1, 'NOVAK STIGAO U BEOGRAD: Đokoviću navijači pripremili doček, Nole otišao kući!', 'Najbolji teniser sveta Novak Đoković doputovao je u Beograd letom iz Dubaija, posle deportacije iz Australije.\r\n\r\nĐoković je na aerodrom \"Nikola Tesla\" sleteo nešto posle podneva gde su čekale brojne domaće i strane novinarske ekipe i navijači', 2022, 2, 1),
+(4, 'KRALJEVI STIŽU NA DAN ŽENA: Zvezda igra sa Realom 8. marta u Evroligi', 'Košarkaši Crvene zvezde igraće 8. marta protiv Real Madrida u Evroligi, utakmicu koja je ranije bila odložena zbog korona virusa.\r\n\r\nUtakmica je trebalo da se odigra 11. januara u Beogradu, a kako je danas saopšteno na sajtu takmičenja, Zvezda i Real igraće 8. marta od 19 časova u hali \"Aleksandar Nikolić\".', 2022, 2, 3),
+(5, 'SUMNJATE DA VAS JE NEKO BLOKIRAO NA FEJSBUKU? Evo kako da proverite da li vas je neko stavio na CRNU LISTU!', 'Ponekad se korisnici Fejsbuk jednostavno se zasite platforme i deaktiviraju svoj profil, no ako ih više ne vidite među svojim prijateljima, postoji šansa da su vas blokirali.\r\n\r\nPostoji niz brzih i jednostavnih načina kojima to možeš proveriti. Fejsbuk nikad nije slao obaveštenja o blokiranju, što znači da ćete morati sami da se potrudite ako imate određene sumnje.\r\n\r\nAko ste blokirani, taj se profil više neće pojavljivati u rezultatima pretraživanja. Međutim, uvek su mogući izuzeci, pa postoje drugi načini istrage.', 2021, 1, 2),
+(6, 'POZNATI METEOROLOG OBJAVIO NAJNOVIJU VREMENSKU PROGNOZU: Kaže da stiže i novo ZAHLAĐENJE, a evo i KADA', 'Sredinom nedelje uglavnom suvo, i u plusu, a onda u najavi novi hladni talas\r\n\r\nMeterolog Marko Čubrilo je na svom Fejsbuk profilu najavio kakvo nas vreme očekuje narednih dana.\r\n\r\n- U toku noći ka utorku naoblačenje će se premestiti na jugoistok donoseći ponegde prolazne padavine, iznad 700mnv prolazan sneg i pojačan severozapadni vetar, koji na severu Hrvatske i Srbije na kratko može biti i vrlo jak - napisao je meteorolog i dodao:\r\n\r\n- Sredinom nedelje uglavnom suvo, ali prohladno, dok će u toku noći biti slabih do umerenih, a ponegde na planinama i jakih mrazeva. Jutarnji minimumi od -7 do -1, na snegom pokrivenim planinama ponegde i oko -12 stepeni Celzijusa. Dnevni maksimum od +2 do +6,a u mestima gde će se magla ponovo duže zadržavati oko -1 stepen Celzijusa. U četvrtak ispred novog, hladnog, fronta koji će se ka nama spuštati po istočnoj periferiji jakog anticiklona sa centrom nad Velikom Britanijom ponovo malo toplije uz jugozapadni vetar i dnevni maksimum od +3 na krajnjem severu do oko +12 na jugu i jugozapadu regiona. Sredinom dana i posle podne prvo na severu, a u toku noći ka petku i nad ostalim predelima naoblačenje uz okretanje vetra na jak severni, padavine i zahlađenje. Za sada deluje da će u nizijama to uglavnom biti kiša ili prolazan sneg koji neće usloviti formiranje konkretnog snežnog pokrivača, dok bi planine, posebno BiH, Crne Gore i Srbije dobile prolazan, ali konkretniji sneg.', 2022, 3, 3),
+(10, 'Skandalozan tekst na račun Đokovića: \"On, tako srpski ponosan, umreće na smetlištu\"', 'Italijanski listi \"Korijere dela Sera\", odnosno njihov novinar Sandro Veronezi, napisao je jedan skandalozan tekst kojim je udario na Novaka Đokovića\r\n\r\nVeronezi se, naime, kolumnom osvrnuo na to što je Đoković proživeo u Australiji, dok je naslov iste bio: \"Srpski sportisti umiru u lepoti, ali Đoković može da umre na đubretu!\"\r\n\r\nNedugo zatim naslov je, očigledno zbog reakcije, promenjen u \"Đoković, pobednik bez lepote, koji može da izgubi sve\", a jedan od onih koji je javno reagovao na ovaj tekst bio je urednig milanskog dnevnika \"Il Đornale\" Nikola Poro.', 2022, 2, 1),
+(11, 'Poljoprivreda u sve losem stanju', 'Zbog sve skuplje cene goriva i nafte i zbog pada cene voca i povrca bavljenje poljoprivredom se ne isplati. ', 2020, 6, 4);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `kategorija`
+--
+ALTER TABLE `kategorija`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `novinar`
+--
+ALTER TABLE `novinar`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `role`
+--
+ALTER TABLE `role`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `role_id` (`role_id`);
+
+--
+-- Indexes for table `vesti`
+--
+ALTER TABLE `vesti`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `kategorija_id` (`kategorija_id`),
+  ADD KEY `novinar_id` (`novinar_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `kategorija`
+--
+ALTER TABLE `kategorija`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `novinar`
+--
+ALTER TABLE `novinar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `role`
+--
+ALTER TABLE `role`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `vesti`
+--
+ALTER TABLE `vesti`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`),
+  ADD CONSTRAINT `user_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `role` (`id`);
+
+--
+-- Constraints for table `vesti`
+--
+ALTER TABLE `vesti`
+  ADD CONSTRAINT `vesti_ibfk_1` FOREIGN KEY (`kategorija_id`) REFERENCES `kategorija` (`id`),
+  ADD CONSTRAINT `vesti_ibfk_2` FOREIGN KEY (`novinar_id`) REFERENCES `novinar` (`id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
